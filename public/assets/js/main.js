@@ -53,12 +53,12 @@ function handleFileSelect(evt) {
 					
 					var information = lines[j].split(',');
 					
-					if(information.length != 6){
+					/*if(information.length != 6){
 						$("#genMsg").append("<span class='glyphicon glyphicon-remove'></span>&nbsp;CSV file doesn't have 6 columns");
 						$("#genMsg").removeClass("hidden").removeClass("alert-success"); 
 						$("#genMsg").addClass('alert-danger');
 						return;
-					}
+					}*/
 					
 					scrumCard.id = information[0];
 					scrumCard.title = information[1];
