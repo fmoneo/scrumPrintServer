@@ -5,13 +5,36 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   alert('The FileReader() API are not fully supported in this browser.');
 }
 
+$("#myTable").tablesorter();
+
+var jsonOut = [];
+
+function getPDFClick() {
+	$.ajax({  
+		url: "/ws",  
+		type: "POST",  
+		dataType: "text",  
+		contentType: "application/json",  
+		data: JSON.stringify(jsonOut),  
+		success: function(data){              
+			//alert("success :-)");
+			console.log(data);
+			var win=window.open("/pdf/out.pdf");
+			win.focus();
+		},  
+		error: function(){  
+			alert("fail :-(");  
+		}  
+	}); 
+}
+
 function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
 
     // files is a FileList of File objects. List some properties.
     var output = [];
 	
-	var jsonOut = [];
+	
 	
 	var reader = new FileReader();
 	
@@ -35,11 +58,11 @@ function handleFileSelect(evt) {
 					scrumCard.id = information[0];
 					scrumCard.title = information[1];
 					scrumCard.assignedTo = information[2];
+					scrumCard.pri = information[3];
+					scrumCard.type = information[4];
 					
-					//for(var k = 0; k < information.length; k++){
-						
-					//}
-					
+					$('#myTable > tbody:last').append('<tr style="display: table-row;"><td>'+scrumCard.id+'</td><td>'+scrumCard.title+'</td><td>'+scrumCard.assignedTo+'</td><td>'+scrumCard.pri+'</td><td>'+scrumCard.type+'</td></tr>');
+					console.log('Add');					
 					
 					jsonOut.push(scrumCard);
 					console.log(j + ">>" + lines[j]);
@@ -58,26 +81,37 @@ function handleFileSelect(evt) {
 					contentType: "application/json",  
 					data: JSON.stringify(jsonOut),  
 					success: function(data){              
-						alert("success :-)");
+						//alert("success :-)");
 						console.log(data);
-						var win=window.open("/pdf/out.pdf");
-						win.focus();
+						//var win=window.open("/pdf/out.pdf");
+						//win.focus();
 					},  
 					error: function(){  
 						alert("fail :-(");  
 					}  
 				}); 
 				
+				var resort = true, // re-apply the current sort
+				callback = function(){
+				  // do something after the updateAll method has completed
+				};
+				console.log('UpdateAll');
+				$("#myTable").trigger("updateAll", [ resort, callback ]);
 				
+				$("#getPDFButton").removeClass("disabled");
 			}
 		};
 		
 		
 		reader.readAsBinaryString(f);
 		
+		
     }
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+	
+	
   }
 
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  document.getElementById('getPDFButton').addEventListener('click', getPDFClick, false);
 

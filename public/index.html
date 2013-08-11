@@ -1,14 +1,121 @@
 <!doctype html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://glyphicons.getbootstrap.com/css/bootstrap-glyphicons.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	
+	<link href="assets/css/theme.blue.css" rel="stylesheet">
+	<script src="assets/js/jquery.tablesorter.min.js"></script>
+	<script src="assets/js/jquery.tablesorter.widgets.js"></script>
+	
 </head>
 <body>
 
-	<input type="file" id="files" name="files[]" multiple />
-	<output id="list"></output>
-	<div id="byte_content"></div>
+	 <div class="container">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">LPSO</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Cards</a></li>
+            <li><a href="#about">Calendar</a></li>
+            <li><a href="#contact">Burndown</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+		<div class="starter-template">
+			<h1>Scrum Card Print</h1>
+			<p class="lead">Use this tool to populate a PDF template from on a CSV file.</p>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Upload CSV</h3>
+			</div>
+			<form>
+				<fieldset>
+					<!--<legend>Upload CSV</legend>-->
+					<div class="form-group">
+					<!--<label for="exampleInputFile">Upload CSV</label>-->
+					<input type="file" id="files" name="files[]" />
+					<p class="help-block">Format: id, title, assigned to, pri, type</p>
+					</div>
+					<!--<button type="submit" class="btn btn-success">Get PDF&nbsp;<span class="glyphicon glyphicon-file"></span></button>-->
+				</fieldset>
+			</form>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;Table</h3>
+			</div>
+			<div>
+			<table id="myTable" class="tablesorter tablesorter-blue">
+			<thead>
+			<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Assigned To</th>
+			<th>Pri</th>
+			<th>Type</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!--<tr>
+			<td>Smith</td>
+			<td>John</td>
+			<td>jsmith@gmail.com</td>
+			<td>$50.00</td>
+			<td>http://www.jsmith.com</td>
+			</tr>
+			<tr>
+			<td>Bach</td>
+			<td>Frank</td>
+			<td>fbach@yahoo.com</td>
+			<td>$50.00</td>
+			<td>http://www.frank.com</td>
+			</tr>
+			<tr>
+			<td>Doe</td>
+			<td>Jason</td>
+			<td>jdoe@hotmail.com</td>
+			<td>$100.00</td>
+			<td>http://www.jdoe.com</td>
+			</tr>
+			<tr>
+			<td>Conway</td>
+			<td>Tim</td>
+			<td>tconway@earthlink.net</td>
+			<td>$50.00</td>
+			<td>http://www.timconway.com</td>
+			</tr>-->
+			</tbody>
+			</table>
+			</div>
+			<button id="getPDFButton" class="btn btn-success btn-lg disabled">Get PDF&nbsp;<span class="glyphicon glyphicon-file"></span></button>
+		</div>
+		
+
+    </div><!-- /.container -->
+		<!--<input type="file" id="files" name="files[]" multiple />-->
+		<output id="list"></output>
+		<div id="byte_content"></div>
+
+		
+		<script src="assets/js/main.js" charset="utf-8"></script>
 	
-	<script src="assets/js/main.js" charset="utf-8"></script>
+
 </body>
 </html>
