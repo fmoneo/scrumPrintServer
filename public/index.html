@@ -10,6 +10,7 @@
 	<link href="assets/css/theme.blue.css" rel="stylesheet">
 	<script src="assets/js/jquery.tablesorter.min.js"></script>
 	<script src="assets/js/jquery.tablesorter.widgets.js"></script>
+	<script src="assets/js/jquery.csv-0.71.min.js"></script>
 	
 </head>
 <body>
@@ -36,8 +37,9 @@
     <div class="container">
 
 		<div class="starter-template">
-			<h1>Scrum Card Print</h1>
+			<h1>Scrum Card Print v1.1</h1>			
 			<p class="lead">Use this tool to populate a PDF template from on a CSV file.</p>
+			<img src="assets/images/logo.png">
 		</div>		
 		
 		<div class="panel panel-primary">
@@ -54,7 +56,7 @@
 					<!--<label for="exampleInputFile">Upload CSV</label>-->
 					<input type="file" id="files" name="files[]" />
 					<p class="help-block">
-						Format: id, title, assigned to, pri, hours, type. <a href="sample.csv">Sample File</a></br>
+						Format: id, title, assigned to, <abbr title="priority">pri</abbr>, hours/<abbr title="story points">sp</abbr>, type. <a href="sample.csv">Sample File</a></br>
 						Type should be one of the following: User Story, Dev Task, Test Task, PM Task, Release Task or Bug.
 					</p>
 					
@@ -76,9 +78,9 @@
 							<th>Id</th>
 							<th>Title</th>
 							<th>Assigned To</th>
-							<th>Pri</th>
-							<th>Hours</th>
-							<th>Type</th>
+							<th><abbr title="Priority">Pri</abbr></th>
+							<th>Hours/<abbr title="Story Points">SP</abbr></th>
+							<th><abbr title="User Story, Dev Task, Test Task, PM Task, Release Task or Bug">Type</abbr></th>
 						</tr>
 					</thead>
 					<tbody>
